@@ -22,4 +22,4 @@ jobs:
           password: ${{ secrets.VPS_PASSWORD }} # La contraseña (opcional si usas clave privada)
           port: ${{ secrets.VPS_PORT }} # El puerto SSH (por defecto es 22)
           script: |
-            mkdir -p ~/funcionooo
+            mkdir -p ~/funciono2
