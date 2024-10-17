@@ -14,5 +14,29 @@ jobs:
     # Steps representan una secuencia de tareas que se ejecutarán como parte del trabajo
     steps:
       - name: Conexión SSH
-        run: |
-          echo "Holaaa esto es una prueba"
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.VPS_HOST}} # La dirección IP o hostname del VPS
+          username: ${{ secrets.VPS_USERNAME }} # El nombre de usuario para la conexión SSH
+          key: ${{secrets.VPS_SSH_PRIVATE_KEY}}
+          password: ${{ secrets.VPS_PASSWORD }} # La contraseña (opcional si usas clave privada)
+          port: ${{ secrets.VPS_PORT }} # El puerto SSH (por defecto es 22)
+          script: |
+            # Detener cualquier proceso que esté usando el puerto 8080
+            sudo fuser -k 8080/tcp || true
+            # Navegar a la carpeta donde tienes el repositorio clonado
+            cd ~/API_Docker_SIGUARD 
+
+             # Actualizar el repositorio con la última versión desde GitHub
+            git pull origin main
+
+            # Construir el proyecto con Gradle en el VPS
+            ./gradlew clean bootJar
+
+            # Ejecutar el nuevo JAR directamente desde la carpeta build/libs/
+            #nohup java -jar build/libs/*.jar & 
+            nohup java -jar build/libs/*.jar > app.log 2>&1 &  # Inicia la aplicación
+            echo "Application started and running in background."
+
+            #cerrar la conexión
+            exit
