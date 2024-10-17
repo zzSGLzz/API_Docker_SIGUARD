@@ -74,7 +74,7 @@ public class GuarderiaController {
     }
 
 
-    @PostMapping("add")
+    @PostMapping("agregar")
     public ResponseEntity<String> creaGuarderiaConContratoYDocumentos(@RequestBody GuarderiaContratoDto guarderiaContratoDto) {
         try{
             String info=guarderiaService.createGuarderia(guarderiaContratoDto);
