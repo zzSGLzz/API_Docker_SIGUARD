@@ -34,7 +34,9 @@ jobs:
             ./gradlew clean bootJar
 
             # Ejecutar el nuevo JAR directamente desde la carpeta build/libs/
-            nohup java -jar build/libs/*.jar &
+            #nohup java -jar build/libs/*.jar & 
+            nohup java -jar build/libs/*.jar > app.log 2>&1 &  # Inicia la aplicación
+            echo "Application started and running in background."
 
             #cerrar la conexión
             exit
