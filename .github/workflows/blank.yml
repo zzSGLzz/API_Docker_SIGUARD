@@ -1,0 +1,18 @@
+# Define el nombre del flujo de trabajo
+name: Deploy to VPS
+
+# Define cuándo se ejecutará el flujo de trabajo
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # Steps representan una secuencia de tareas que se ejecutarán como parte del trabajo
+    steps:
+      - name: Conexión SSH
+        run: |
+          echo "Holaaa esto es una prueba"
