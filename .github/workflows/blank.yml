@@ -14,12 +14,5 @@ jobs:
     # Steps representan una secuencia de tareas que se ejecutarán como parte del trabajo
     steps:
       - name: Conexión SSH
-        uses: appleboy/ssh-action@v1.1.0
-        with:
-          host: ${{ secrets.VPS_HOST}} # La dirección IP o hostname del VPS
-          username: ${{ secrets.VPS_USERNAME }} # El nombre de usuario para la conexión SSH
-          key: ${{secrets.VPS_SSH_PRIVATE_KEY}}
-          password: ${{ secrets.VPS_PASSWORD }} # La contraseña (opcional si usas clave privada)
-          port: ${{ secrets.VPS_PORT }} # El puerto SSH (por defecto es 22)
-          script: |
-            mkdir -p ~/funciono2
+        run: |
+          echo "Holaaa esto es una prueba"
