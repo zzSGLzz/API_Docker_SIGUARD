@@ -1,9 +1,8 @@
-package indiecode.api.siguard.dto;
+package indiecode.api.siguard.Persistence.Dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,9 +14,12 @@ import lombok.Setter;
  * @author zzsglzz
  */
 @Data
-public class GuarderiasDto {
-   
-    private final String nombre;
-   
-    
+@AllArgsConstructor
+public class GuarderiaDto {
+    private String id;
+    private String razonSocial;
+    private String nombreGerente;
+
+
 }
+
